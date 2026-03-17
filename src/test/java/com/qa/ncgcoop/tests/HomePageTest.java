@@ -12,6 +12,10 @@ import org.testng.Assert;
 import static utils.PropertyReader.loadProperty;
 import static com.qa.ncgcoop.constants.HomePageConstants.HOME_PAGE_TITLE;
 import static com.qa.ncgcoop.constants.HomePageConstants.NEWS_PAGE_TITLE;
+import static org.junit.Assert.assertThat;
+import static com.qa.ncgcoop.constants.HomePageConstants.BOTTOM_TEXT;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class HomePageTest extends Base {
 
@@ -33,13 +37,7 @@ public class HomePageTest extends Base {
 	        Assert.assertEquals(title,HOME_PAGE_TITLE);
 
 	    }
-//	    @Test
-//	    public void pageTitleTest()
-//	    {
-//	        String title = homePage.getPageTitle();
-//	        Assert.assertEquals(title, HOME_PAGE_TITLE);
-	//
-//	    }
+
 	    
 
 		 @Test(priority=2)
@@ -49,16 +47,39 @@ public class HomePageTest extends Base {
 	        Assert.assertEquals(url, loadProperty("baseUrl"));
 	        
 	    }
-	    
-	    @Test(priority=3)
-	    public void PageBtnTest()
-	    {
-	    	homePage.aboutNCG();
-	    	String title = homePage.getPageTitle();
-	        Assert.assertEquals(title,NEWS_PAGE_TITLE);
-	    	
-	    	
-	    }
+		 
+		 @Test(priority=3)
+		 public void scrolldownHome()
+		 {
+			
+			 homePage.scrollDOWNPage();
+			 String bottom_text=homePage.textContent();
+			 Assert.assertEquals(bottom_text,BOTTOM_TEXT);
+		 }
+		 
+		 @Test(priority=4)
+		 public void scrollUPHome()
+		 {
+			 homePage.scrollUPPage();
+		
+//			if(assertThat(page.getByText(BOTTOM_TEXT)).equals(homePage.textContent())) {
+//				homePage.scrollUPPage();
+//			}else {
+//				System.out.println("Fail");
+//			}
+			 
+			
+		 }
+		 
+//	    @Test(priority=3)
+//	    public void PageBtnTest()
+//	    {
+//	    	homePage.aboutNCG();
+//	    	String title = homePage.getPageTitle();
+//	        Assert.assertEquals(title,NEWS_PAGE_TITLE);
+//	    	
+//	    	
+//	    }
 	    
 
 
@@ -74,17 +95,4 @@ public class HomePageTest extends Base {
 	    }
 	    
 	    
-	    
-	    
-
-//	    @Test(dataProvider = "searchData")
-//	    public void searchTest(String productName) throws InterruptedException
-//	    {
-//	        String itemName = homePage.searchItem(productName);
-//	        Thread.sleep(5000);
-//	        Assert.assertEquals("Search - "+productName, itemName);
-//	        System.out.println("item: "+itemName);
-//	    }
-
-
 	}

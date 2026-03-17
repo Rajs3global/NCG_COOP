@@ -13,7 +13,9 @@ public class HomePage {
 	 */
 	private String aboutNCG = "//a[@class='menu-link' and text()= 'About NCG']";
 	private String aboutNCG_news="//a[@class='menu-link' and text()='News and Information']";
-
+	private String scollTop="//div[@id='ast-scroll-top']";
+	private String copyWright = "//*[starts-with(text(), 'Copyright')]";
+	//*[starts-with(text(), "Copyright")]
 	// Constructor to capture Page
 	public HomePage(Page page) {
 		this.page = page;
@@ -31,6 +33,21 @@ public class HomePage {
 		//page.waitForTimeout(5000);
 
 		page.waitForSelector(aboutNCG_news).click();
+	}
+	public void scrollDOWNPage() {
+		page.keyboard().press("End");
+	    page.waitForTimeout(2000);
+		
+
+	}
+	
+	
+	public void scrollUPPage() {
+		page.keyboard().press("Home");
+	}
+	public String textContent() {
+		// TODO Auto-generated method stub
+		return page.textContent(copyWright);
 	}
 	
 

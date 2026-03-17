@@ -5,8 +5,11 @@
     <classes>
       <class name="com.qa.ncgcoop.tests.HomePageTest">
         <methods>
+          <include name="pageUrlTest"/>
+          <include name="pageTitleTest"/>
+          <include name="scrolldownHome"/>
           <include name="tearDownPlaywright"/>
-          <include name="PageBtnTest"/>
+          <include name="scrollUPHome"/>
           <include name="setupPlaywright"/>
         </methods>
       </class> <!-- com.qa.ncgcoop.tests.HomePageTest -->
